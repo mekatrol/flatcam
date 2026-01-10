@@ -2010,7 +2010,7 @@ class MainGUI(QtWidgets.QMainWindow):
         self.app_icon.addFile(self.app.resource_location + '/app256.png', QtCore.QSize(256, 256))
         self.setWindowIcon(self.app_icon)
 
-        self.setWindowTitle('FlatCAM Evo %s %s - %s' %
+        self.setWindowTitle('Mekatrol FlatCAM %s %s - %s' %
                             (self.app.version,
                              ('BETA' if self.app.beta else ''),
                              platform.architecture()[0])
@@ -2068,7 +2068,7 @@ class MainGUI(QtWidgets.QMainWindow):
         # ########################################################################
         # ################## RESTORE UI from QSettings #################
         # ########################################################################
-        q_settings = QSettings("Open Source", "FlatCAM_EVO")
+        q_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
         if q_settings.contains("saved_gui_state"):
             self.restoreState(q_settings.value('saved_gui_state'), 0)
         tb_lock_state = q_settings.value('toolbar_lock', "true")
@@ -2231,13 +2231,13 @@ class MainGUI(QtWidgets.QMainWindow):
         :param name: String that store the project path and project name
         :return: None
         """
-        title = 'FlatCAM Evo %s %s - %s - [%s]    %s' % (
+        title = 'Mekatrol FlatCAM %s %s - %s - [%s]    %s' % (
             self.app.version, ('BETA' if self.app.beta else ''), platform.architecture()[0], self.app.engine, name)
         self.setWindowTitle(title)
 
     def on_toggle_gui(self):
         if self.isHidden():
-            mgui_settings = QSettings("Open Source", "FlatCAM_EVO")
+            mgui_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
             if mgui_settings.contains("maximized_gui"):
                 maximized_ui = mgui_settings.value('maximized_gui', type=bool)
                 if maximized_ui is True:
@@ -2343,7 +2343,7 @@ class MainGUI(QtWidgets.QMainWindow):
         """
         self.app.log.debug("Clearing the settings in QSettings. GUI settings cleared.")
 
-        theme_settings = QtCore.QSettings("Open Source", "FlatCAM_EVO")
+        theme_settings = QtCore.QSettings("Open Source", "Mekatrol_FlatCAM")
         theme_settings.setValue('theme', 'light')
 
         del theme_settings
@@ -2368,7 +2368,7 @@ class MainGUI(QtWidgets.QMainWindow):
             response = msgbox.clickedButton()
 
         if forced_clear is True or response == bt_yes:
-            q_settings = QSettings("Open Source", "FlatCAM_EVO")
+            q_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
             for key in q_settings.allKeys():
                 q_settings.remove(key)
             # This will write the setting to the platform specific storage.
@@ -2686,7 +2686,7 @@ class MainGUI(QtWidgets.QMainWindow):
         self.snap_magnet.setVisible(False)
         self.editor_exit_btn_ret_action.setVisible(False)
 
-        q_settings = QSettings("Open Source", "FlatCAM_EVO")
+        q_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
         if q_settings.contains("layout"):
             layout = q_settings.value('layout', type=str)
 
@@ -2754,7 +2754,7 @@ class MainGUI(QtWidgets.QMainWindow):
                 if isinstance(widget, QtWidgets.QToolBar):
                     widget.setMovable(True)
 
-        q_settings = QSettings("Open Source", "FlatCAM_EVO")
+        q_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
         q_settings.setValue('toolbar_lock', lock)
         # This will write the setting to the platform specific storage.
         del q_settings
@@ -2769,7 +2769,7 @@ class MainGUI(QtWidgets.QMainWindow):
                 if isinstance(widget, QtWidgets.QToolBar):
                     widget.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
 
-        q_settings = QSettings("Open Source", "FlatCAM_EVO")
+        q_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
         q_settings.setValue('menu_show_text', show_text)
         # This will write the setting to the platform specific storage.
         del q_settings
@@ -4610,7 +4610,7 @@ class MainGUI(QtWidgets.QMainWindow):
         else:
             g_rect = self.geometry()
 
-            q_settings = QSettings("Open Source", "FlatCAM_EVO")
+            q_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
             q_settings.setValue('saved_gui_state', self.saveState(0))
             q_settings.setValue('toolbar_lock', self.lock_action.isChecked())
             q_settings.setValue('menu_show_text', self.show_text_action.isChecked())

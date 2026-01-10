@@ -30,7 +30,7 @@ class VisPyCanvas(scene.SceneCanvas):
 
         self.unfreeze()
 
-        settings = QSettings("Open Source", "FlatCAM_EVO")
+        settings = QSettings("Open Source", "Mekatrol_FlatCAM")
         if settings.contains("axis_font_size"):
             a_fsize = settings.value('axis_font_size', type=int)
         else:
@@ -102,7 +102,7 @@ class VisPyCanvas(scene.SceneCanvas):
         # grid1 = scene.GridLines(parent=view.scene, color='dimgray')
         # grid1.set_gl_state(depth_test=False)
 
-        settings = QSettings("Open Source", "FlatCAM_EVO")
+        settings = QSettings("Open Source", "Mekatrol_FlatCAM")
         if settings.contains("theme"):
             theme = settings.value('theme', type=str)
         else:

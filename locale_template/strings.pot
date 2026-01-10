@@ -11850,7 +11850,7 @@ msgid "FlatCAM Author"
 msgstr ""
 
 #: appMain.py:3625
-msgid "FlatCAM Evo Author/Maintainer"
+msgid "Mekatrol FlatCAM Author/Maintainer"
 msgstr ""
 
 #: appMain.py:3697
@@ -12295,7 +12295,7 @@ msgid "Clear Recent files"
 msgstr ""
 
 #: appMain.py:8653
-msgid "FlatCAM Evo"
+msgid "Mekatrol FlatCAM"
 msgstr ""
 
 #: appMain.py:8657
@@ -16807,7 +16807,7 @@ msgid "...processing..."
 msgstr ""
 
 #: appPlugins/ToolShell.py:323
-msgid "FlatCAM Evo Shell"
+msgid "Mekatrol FlatCAM Shell"
 msgstr ""
 
 #: appPlugins/ToolSolderPaste.py:110 appPlugins/ToolSolderPaste.py:1229

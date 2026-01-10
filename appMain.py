@@ -669,7 +669,7 @@ class App(QtCore.QObject):
         # ###########################################################################################################
         if self.options["first_run"] is True:
             # on first run clear the previous QSettings, therefore clearing the GUI settings
-            q_settings = QSettings("Open Source", "FlatCAM_EVO")
+            q_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
             for key in q_settings.allKeys():
                 q_settings.remove(key)
             # This will write the setting to the platform specific storage.
@@ -678,7 +678,7 @@ class App(QtCore.QObject):
         # ###########################################################################################################
         # ###################################### Setting the Splash Screen ##########################################
         # ###########################################################################################################
-        splash_settings = QSettings("Open Source", "FlatCAM_EVO")
+        splash_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
         if splash_settings.contains("splash_screen"):
             show_splash = splash_settings.value("splash_screen")
         else:
@@ -791,7 +791,7 @@ class App(QtCore.QObject):
         self.FC_light_blue = '#a5a5ffbf'
         self.FC_dark_blue = '#0000ffbf'
 
-        theme_settings = QtCore.QSettings("Open Source", "FlatCAM_EVO")
+        theme_settings = QtCore.QSettings("Open Source", "Mekatrol_FlatCAM")
         theme_settings.setValue("appearance", self.options["global_appearance"])
         theme_settings.setValue("theme", self.options["global_theme"])
         theme_settings.setValue("dark_canvas", self.options["global_dark_canvas"])
@@ -1315,8 +1315,6 @@ class App(QtCore.QObject):
         # ##################################### Finished the CONSTRUCTOR ############################################
         # ###########################################################################################################
         self.log.debug("END of constructor. Releasing control.")
-        self.log.debug("... Resistance is futile. You will be assimilated ...")
-        self.log.debug("... I disagree. While we live and breath, we can be free!\n")
 
         # ###########################################################################################################
         # ########################################## SHOW GUI #######################################################
@@ -1328,7 +1326,7 @@ class App(QtCore.QObject):
                 # finish the splash
                 self.splash.finish(self.ui)
 
-            mgui_settings = QSettings("Open Source", "FlatCAM_EVO")
+            mgui_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
             if mgui_settings.contains("maximized_gui"):
                 maximized_ui = mgui_settings.value('maximized_gui', type=bool)
                 if maximized_ui is True:
@@ -2161,7 +2159,7 @@ class App(QtCore.QObject):
         else:
             current_layout = self.ui.general_pref_form.general_gui_group.layout_combo.get_value()
 
-        lay_settings = QSettings("Open Source", "FlatCAM_EVO")
+        lay_settings = QSettings("Open Source", "Mekatrol_FlatCAM")
         lay_settings.setValue('layout', current_layout)
 
         # This will write the setting to the platform specific storage.
@@ -2982,7 +2980,7 @@ class App(QtCore.QObject):
                 logo.setPixmap(QtGui.QPixmap(self.app.resource_location + '/app256.png'))
 
                 title = FCLabel(
-                    "<font size=8><B>FlatCAM Evo</B></font><BR>"
+                    "<font size=8><B>Mekatrol FlatCAM</B></font><BR>"
                     "{title}<BR>"
                     "<BR>"
                     "<BR>"
@@ -3001,7 +2999,7 @@ class App(QtCore.QObject):
 
                 tab_widget = QtWidgets.QTabWidget()
                 description_label = FCLabel(
-                    "FlatCAM Evo {version} {beta} ({date}) - {arch}<br>"
+                    "Mekatrol FlatCAM {version} {beta} ({date}) - {arch}<br>"
                     "<a href = \"http://flatcam.org/\">http://flatcam.org</a><br>".format(
                         version=version,
                         beta=('BETA' if beta else ''),
@@ -3362,11 +3360,16 @@ class App(QtCore.QObject):
                 self.prog_grid_lay.addWidget(FCLabel('%s' % "Juan Pablo Caram"), 1, 0)
                 self.prog_grid_lay.addWidget(FCLabel('%s' % _("FlatCAM Author")), 1, 1)
 
-                # FlatCAM EVO Author
+                # FlatCAM Author
                 self.prog_grid_lay.addWidget(FCLabel('%s' % "Marius Stanciu"), 2, 0)
-                self.prog_grid_lay.addWidget(FCLabel('%s' % _("FlatCAM Evo Author/Maintainer")), 2, 1)
+                self.prog_grid_lay.addWidget(FCLabel('%s' % _("Mekatrol FlatCAM Author/Maintainer")), 2, 1)
                 self.prog_grid_lay.addWidget(FCLabel('%s' % "<marius_adrian@yahoo.com>"), 2, 2)
                 self.prog_grid_lay.addWidget(FCLabel(''), 3, 0)
+
+                # FlatCAM Author
+                self.prog_grid_lay.addWidget(FCLabel('%s' % "Paul Wojcik"), 2, 0)
+                self.prog_grid_lay.addWidget(FCLabel('%s' % _("Mekatrol FlatCAM Author/Maintainer")), 2, 1)
+                self.prog_grid_lay.addWidget(FCLabel(''), 4, 0)
 
                 # randomize the order of the programmers at each launch
                 random.shuffle(programmers)
@@ -3890,7 +3893,7 @@ class App(QtCore.QObject):
 
         if self.cmd_line_headless != 1:
             # save app state to file
-            stgs = QSettings("Open Source", "FlatCAM_EVO")
+            stgs = QSettings("Open Source", "Mekatrol_FlatCAM")
             stgs.setValue('saved_gui_state', self.ui.saveState())
             stgs.setValue('maximized_gui', self.ui.isMaximized())
             stgs.setValue(
@@ -7152,7 +7155,7 @@ class App(QtCore.QObject):
         # main Items categories
         general_cat = d_properties_tw.addParent(root, _('General'), expanded=True, color=p_color, font=font)
         d_properties_tw.addChild(parent=general_cat,
-                                 title=['%s:' % _("Name"), '%s' % _("FlatCAM Evo")], column1=True)
+                                 title=['%s:' % _("Name"), '%s' % _("Mekatrol FlatCAM")], column1=True)
         d_properties_tw.addChild(parent=general_cat,
                                  title=['%s:' % _("Version"), '%s' % str(self.version)], column1=True)
         d_properties_tw.addChild(parent=general_cat,
