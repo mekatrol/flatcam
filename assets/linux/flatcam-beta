@@ -2,4 +2,8 @@
 
 script_path=$(readlink -f $0)
 python_script_path=$(dirname $script_path)/../../
-python3 $python_script_path/FlatCAM.py $*
+python_exec=$python_script_path/.venv/bin/python
+if [ ! -x "$python_exec" ]; then
+    python_exec=python3
+fi
+"$python_exec" $python_script_path/flatcam.py $*
