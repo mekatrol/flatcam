@@ -13,7 +13,7 @@
 # #################################################################################################
 
 setuptools
-numpy>=1.16,<2
+numpy>=2.0
 cycler>=0.10
 python-dateutil>=2.1
 kiwisolver>=1.1
@@ -54,5 +54,5 @@ svgtrace
 # To detect OS dark mode
 darkdetect
 
-gdal
+gdal==3.8.4
 rasterio

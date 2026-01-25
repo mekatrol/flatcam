@@ -23,7 +23,7 @@ sudo apt-get install -y \
 
 sudo -H python3 -m pip install --upgrade \
 	pip \
-	numpy \
+	numpy>=2.0 \
 	shapely \
 	rtree \
 	tk \
