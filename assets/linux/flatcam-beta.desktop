@@ -4,5 +4,5 @@ Exec=./bin/flatcam-beta
 Type=Application
 StartupNotify=true
 StartupWMClass=flatcam.py
-Icon=./assets/icon.png
+Icon=./assets/linux/icon.png
 Comment=G-Code from GERBERS
