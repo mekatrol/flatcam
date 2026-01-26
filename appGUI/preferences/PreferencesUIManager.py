@@ -1307,7 +1307,7 @@ class PreferencesUIManager(QtCore.QObject):
                     self.ui.plot_tab_area.tabBar.setTabTextColor(idx, QtGui.QColor('red'))
 
             self.ui.pref_apply_button.color = 'red'
-            self.ui.pref_apply_button.setIcon(QtGui.QIcon(self.ui.app.resource_location + '/apply_red32.png'))
+            self.ui.pref_apply_button.setIcon(QtGui.QIcon(self.ui.app.resource_location + '/apply_green32.png'))
 
             self.preferences_changed_flag = True
 

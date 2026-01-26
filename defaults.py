@@ -147,7 +147,7 @@ class AppDefaults:
         "global_cursor_type": "small",
         "global_cursor_size": 20,
         "global_cursor_width": 2,
-        "global_cursor_color": '#FF0000',
+        "global_cursor_color": '#00FF00',
         "global_cursor_color_enabled": True,
 
         "global_pan_button": '2',
