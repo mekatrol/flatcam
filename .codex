@@ -1,0 +1,99 @@
+# FlatCAM Project Context
+
+## What This Repository Is
+
+This is a PyQt6 desktop application for PCB/CAM preparation and CNC job generation.
+It is a fork of FlatCAM, with the main entrypoint in `flatcam.py`.
+
+Primary runtime flow:
+
+1. `flatcam.py` creates the Qt application, applies VisPy patches, and instantiates `appMain.App`.
+2. `appMain.py` is the orchestration layer for application state, objects, handlers, plugins, preferences, plotting, and UI wiring.
+3. `appGUI/MainGUI.py` builds the main window and most of the visible UI.
+
+## Important Directories
+
+- `appGUI/`: Qt widgets, main window, plotting canvases, preference UIs, themes.
+- `appObjects/`: document model objects such as Gerber, Excellon, Geometry, CNCJob, Script, Document.
+- `appParsers/`: import/parsing logic for Gerber, Excellon, DXF, SVG, PDF, fonts, HPGL2.
+- `appEditors/`: interactive editors for geometry, gerber, excellon, gcode, text.
+- `appPlugins/`: tool/plugin implementations used from the UI.
+- `appHandlers/`: application handlers such as IO/edit coordination.
+- `tclCommands/`: shell/command automation layer.
+- `preprocessors/`: CNC postprocessor definitions.
+- `assets/`: icons, resources, examples, platform assets.
+- `libs/`: bundled third-party code, including `qdarktheme`.
+
+## Local Development
+
+Use the existing virtual environment if available:
+
+```bash
+source .venv/bin/activate
+python flatcam.py
+```
+
+VS Code launch config already points to:
+
+```bash
+python flatcam.py
+```
+
+The project README and dependency files indicate:
+
+- Python 3.11+ is the intended target.
+- PyQt6 is required.
+- Native/geospatial dependencies matter (`gdal`, `rasterio`, `shapely`, `rtree`).
+- On Linux, Qt may need `QT_QPA_PLATFORM=xcb`.
+
+## Dependency Notes
+
+Python package lists are in:
+
+- `requirements.txt`
+- `environment.yml`
+
+Some dependencies are not purely pip-friendly on all systems, especially GDAL-related packages.
+Avoid changing dependency pins casually unless the task requires it.
+
+## Testing And Verification
+
+There is no obvious dedicated automated test suite in the repository root.
+Default verification should therefore be pragmatic:
+
+1. Start the app with `python flatcam.py`.
+2. Verify the affected workflow in the UI.
+3. If editing parser/object/tool code, validate the relevant import or tool path manually.
+
+When possible, prefer targeted verification over broad refactors.
+
+## Working Conventions For This Codebase
+
+- Prefer minimal, surgical changes. `appMain.py` and `appGUI/MainGUI.py` are large and central.
+- Preserve existing naming and structure instead of trying to modernize whole modules opportunistically.
+- Treat `__pycache__/` artifacts as generated files; do not edit them.
+- Keep compatibility with the current Qt/PyQt6 application structure.
+- Be careful with threading and multiprocessing assumptions. The app already contains special handling around Qt and multiprocessing startup.
+- UI behavior is tightly coupled to object, plugin, and preferences state; trace signal/slot and initialization paths before changing shared behavior.
+
+## High-Value Files To Read Before Major Changes
+
+- `flatcam.py`
+- `appMain.py`
+- `appGUI/MainGUI.py`
+- `defaults.py`
+- Relevant files under `appObjects/`, `appParsers/`, `appPlugins/`, or `appEditors/` depending on the feature area
+
+## Good Change Strategy
+
+- For startup or app-wide behavior: inspect `flatcam.py`, then `appMain.py`.
+- For menus, toolbars, preferences, layout, or visible widgets: inspect `appGUI/MainGUI.py` and matching `appGUI/preferences/...` files.
+- For file import/export behavior: inspect `appHandlers/appIO.py` plus the relevant parser in `appParsers/`.
+- For machining/tool behavior: inspect the relevant plugin in `appPlugins/` and related object classes in `appObjects/`.
+- For command-shell automation: inspect the matching file in `tclCommands/`.
+
+## Practical Warnings
+
+- This repo contains very large modules; avoid wide formatting-only edits.
+- The app uses bundled resources and icons from `assets/`; broken resource paths can fail at runtime.
+- Changes in parsing or geometry generation can have broad downstream effects on plotting, editing, and CNC output.
