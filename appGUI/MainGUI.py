@@ -1163,8 +1163,8 @@ class MainGUI(QtWidgets.QMainWindow):
             QtGui.QIcon(self.app.resource_location + '/milling_tool32.png'), _("Milling"))
         self.level_btn = self.toolbarplugins.addAction(
             QtGui.QIcon(self.app.resource_location + '/level32.png'), _("Levelling"))
-        self.level_btn.setDisabled(True)
-        self.level_btn.setToolTip("DISABLED. Work in progress!")
+        # self.level_btn.setDisabled(True)
+        # self.level_btn.setToolTip("DISABLED. Work in progress!")
 
         self.toolbarplugins.addSeparator()
 

@@ -68,4 +68,9 @@ yt-dlp 2024.4.9 requires websockets>=12.0, but you have websockets 10.4 which is
 python flatcam.py
 ```
 
+5. Install FlatCAM
+```bash
+make install
+```
+
 
